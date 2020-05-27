@@ -1,0 +1,90 @@
+{% load static %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'shop/cart.css' %}">
+        <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz&display=swap" rel="stylesheet">
+        <title>Document</title>
+    </head>
+    <body>
+        <div class='navcontainer'>
+            <a href='{% url "home" %}'>
+                <img class="home" id="home" src="{% static 'shop/home.png' %}">
+            </a>
+            <a class='shop' href='{% url "index" %}'>SHOP</a>
+            <a href='{% url "cart" %}'>
+                <img class="cart" id="cart" src="{% static 'shop/cart.png' %}">
+            </a>
+            <div class='qtycircle'>
+                <a class="quantity">
+                    {{ cartqty }}
+                </a>
+            </div>
+        </div>
+        <table class="inyourcart">
+            <th class='title-incart'>IN YOUR BAG</th>
+            <tr class="subtotal">
+                <td>
+                    SUBTOTAL
+                </td>
+                <td class="value">
+                    ${{ subtotal }}
+                </td>
+            </tr>
+            <tr class="shipping">
+                <td>
+                    SHIPPING
+                </td>
+                <td class="value">
+                    ${{ shippingval }}
+                </td>
+            </tr>
+            <tr class="shipping">
+                <td>
+                    ESTIMATED TAX
+                </td>
+                <td class="value">
+                    ${{ taxval }}
+                </td>
+            </tr>
+            <tr class="total">
+                <td>
+                    TOTAL
+                </td>
+                <td class="total-value">
+                    ${{ totalval }}
+                </td>
+            </tr>
+        </table>
+        <table class="order">
+            {% for orderitem in cart %}
+            <tr class="product-card">
+                <td class="image">
+                    <a href='{% url "detail" orderitem.image_link  %}'>
+                        <img src="{% static 'shop/' %}{{ orderitem.image_1 }}" class='item-image' id='item-image'>
+                    </a>
+                </td>
+                <td class="title">{{ orderitem.product }}</td>
+                <td class="size">{{ orderitem.size }}</td>
+                <td class="itemquantity">
+                    <form method="GET" action='{% url "update-quantity" orderitem.id %}'>
+                        <label for="itemquantity">Qty:</label>
+                        <input class='update-quantity' type="number" value='{{ orderitem.quantity }}' name="quantity" min="0" max="100">
+                        <input type='submit' class='qty-btn' value='Update'>
+                    </form>
+                <td class="item_total">$ {{ orderitem.item_total }}</td>
+                <td class="id">
+                    <form method="GET" action='{% url "remove-from-cart" orderitem.id %}'>
+                        <input type='submit' class='remove-from-cart' value='Remove'>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}   
+        </table>
+        <a href='{% url "checkout" %}' class="checkoutbutton">CHECKOUT</a>
+    </body>
+    <script src="{% static 'shop/cart.js' %}"></script>
+    </html>
+

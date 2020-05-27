@@ -1,0 +1,82 @@
+{% load static %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <script src="https://js.stripe.com/v3/"></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'shop/orderconfirmation.css' %}">
+        <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz&display=swap" rel="stylesheet">
+        <title>Document</title>
+    </head>
+    <body>
+        <div class='navcontainer'>
+            <a href='{% url "home" %}'>
+                <img class="home" id="home" src="{% static 'shop/home.png' %}">
+            </a>
+            <a class='shop' href='{% url "index" %}'>SHOP</a>
+        <a href='{% url "cart" %}'>
+            <img class="cart" id="cart" src="{% static 'shop/cart.png' %}">
+        </a>
+        <div class='qtycircle'>
+        <a class="quantity">
+            {{ cartqty }}
+        </a>
+        </div>
+        </div>
+        <div class='titles'>
+            <h1 class="orderin">YOUR ORDER IS IN!</h1>
+            <h1 class="confirm">CONFIRMATION NUMBER: #{{ ordernumber }}</h1>
+            <h1 class='title-incart'>YOUR PURCHASE</h1>
+        </div>
+        <table class="inyourcart">
+            <tr class="subtotal">
+                <td>
+                    SUBTOTAL
+                </td>
+                <td class="subtotal-value">
+                    $ {{ subtotal }}
+                </td>
+            </tr>
+            <tr class="shipping">
+                <td>
+                    SHIPPING
+                </td>
+                <td class="shipping-value">
+                    $ {{ shippingval }}
+                </td>
+            </tr>
+            <tr class="shipping">
+                <td>
+                    TAX
+                </td>
+                <td class="shipping-value">
+                    $ {{ taxval }}
+                </td>
+            </tr>
+            <tr class="total">
+                <td>
+                    TOTAL
+                </td>
+                <td class="total-value">
+                    $ {{ totalval }}
+                </td>
+            </tr>
+        </table>
+        <div class='ordercontainer'>
+            <table class="order">
+                {% for orderitem in cart %}
+                <tr class="product-card">
+                    <td><img src="{% static 'shop/' %}{{ orderitem.image_1 }}" class='item-image' id='item-image'></td>
+                    <td class="title">{{ orderitem.product }}</td>
+                    <td class="size">{{ orderitem.size }}</td>
+                    <td class="itemquantity"><label for="qty">Qty:{{ orderitem.quantity }}</label>
+                    <td class="item-total">$ {{ orderitem.item_total }}</td>
+                </tr>
+                {% endfor %}   
+            </table>
+        </div>
+    </body>
+    <script src="{% static 'shop/checkout.js' %}"></script>
+    </html>
+

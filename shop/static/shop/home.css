@@ -1,0 +1,263 @@
+body {
+    background:white;
+    display:flex;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    overflow-x: hidden;
+}
+.navcontainer{
+    position: fixed;
+    height: 80px;
+    width:100%;
+    background:none;
+    z-index: 95;
+    top:0;
+    overflow:hidden;
+
+}
+
+.navcontainer:hover{
+    background: white;
+    transition:background 200ms ease-in-out;
+    opacity: .7;
+}
+
+.cart {
+    position:fixed;
+    width:2.5em;
+    right:3%;
+    top:18px;
+    z-index: 101;
+    opacity: .8;
+    pointer-events: all;
+}
+
+.cart:hover {
+    opacity: 1;
+}
+
+.quantity {
+    position:fixed;
+    opacity: .8;
+    right:.5%;    
+    top:20px;
+    z-index: 103;
+    color:#454545;
+    font-size: .5em;
+    font-weight: 800;
+    text-align: center;
+    padding-top:.9em;
+    padding-bottom:.9em;
+    padding-left:1.1em;
+    padding-right:1.1em;
+    z-index: 101;
+    pointer-events: none;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+
+.main{
+    position:fixed;
+    width:100vw;
+    padding:0;
+    top:80px;
+    opacity: .7;
+    left:0;
+    z-index: 1;
+}
+
+.spacetop{
+    position: absolute;
+    top:100px;
+    width:50%;
+    left:25%;
+    opacity: 1;
+    z-index: 5;
+}
+.mainoverlay{
+    width:100%;
+    height:100%;
+    top:0%;
+    left:0%;
+    z-index: 5;
+}
+
+
+.space{
+    position: absolute;
+    background:white;
+    width:100%;
+    top:50%;
+    z-index: 4;
+    margin:0;
+    left:0;
+}
+
+.image1{
+    width:100vw;
+    top:105%;
+    z-index: 4;
+    margin:0;
+    left:0;
+    opacity: .9;
+    cursor: pointer;
+}
+.image2{
+    width:100vw;
+    z-index: 4;
+    margin:0;
+    left:0;
+    opacity: 1;
+    cursor: pointer;
+}
+
+.image3{
+    width:100vw;
+    z-index: 4;
+    margin:0;
+    left:0;
+    opacity: 1;
+    cursor: pointer;
+}
+
+.home {
+    position:fixed;
+    height: 70px;
+    left:3%;
+    top:5px;
+    z-index: 101;
+}
+
+.shop{
+    position: fixed;
+    line-height: 10%;
+    left:25%;
+    text-decoration: none;
+    background:none;
+    top:40px;
+    color:#454545;
+    font-size:1.5rem;
+    font-weight: 600;
+    z-index: 101;
+}
+.shop:hover{
+    color: black;
+}
+
+
+.sitetitle {
+    position:fixed;
+    height: 10%;
+    left:12%;
+    top:4%;
+    z-index: 101;
+    font-family: sans-serif;
+}
+
+
+.order.active{
+    position: fixed;
+    width:300px;
+    right:1%;
+    top:50px;
+    border-collapse: collapse;
+    z-index: 1001;
+    background:white;
+    display:block;
+    border-radius: 10px;
+    font-size: .5em;
+    font-family: sans-serif;
+    border:25px solid white;
+    padding-bottom: 8%;
+    padding-right:5%;
+    max-height: 50vh;
+    overflow: scroll;
+    margin:10px;
+}
+
+.checkoutbutton{
+    position: absolute;
+    width:75%;
+    left:12.5%;
+    border-radius: 20px;
+    border:2px solid #454545;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right:5px;
+    padding-left: 5px;
+    outline: none;
+    text-align: center;
+    font-size: 1.1rem;
+    background: white;
+    cursor: pointer;
+    color:#454545;
+    opacity: .8;
+    text-decoration: none;
+    font-family: sans-serif;
+    margin-top:50px;
+    
+}
+
+.checkoutbutton:hover{
+    opacity: 1;
+    background:#454545;
+    color:white;
+    transition:background 300ms;
+    animation: grow 500ms forwards;
+
+}
+
+.gotocartbutton{
+    position: absolute;
+    width:75%;
+    left:12.5%;
+    border-radius: 20px;
+    border:2px solid #454545;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right:5px;
+    padding-left: 5px;
+    outline: none;
+    text-align: center;
+    font-size: 1.1rem;
+    background: white;
+    cursor: pointer;
+    color:#454545;
+    opacity: .8;
+    text-decoration: none;
+    font-family: sans-serif;
+}
+
+.gotocartbutton:hover{
+    opacity: 1;
+    background:#454545;
+    color:white;
+    transition:background 300ms;
+    animation: grow 500ms forwards;
+
+}
+
+.order{
+    display:none;
+}
+.order td{
+    padding-top:1%;
+    padding-bottom:1%;
+    padding-left:20px;
+    text-align: left;
+}
+.itemquantity{
+    padding-left: 0;
+}
+.item-image{
+    height: 65px;
+    border-radius: 10%;
+}
+
+@keyframes grow {
+	0% {
+		transform: scale(1);
+	}
+
+	100% {
+		transform: scale(1.2);
+	}
+}

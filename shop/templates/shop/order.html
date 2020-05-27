@@ -1,0 +1,58 @@
+{% load static %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>YOUR ORDER IS IN!</h1>
+        <h1>CONFIRMATION NUMBER: R234EJ</h1>
+            <table class="order">
+                {% for orderitem in cart %}
+                <tr class="product-card">
+                    <td class="title">{{ orderitem.product }}</td>
+                    <td class="size">{{ orderitem.size }}</td>
+                    <td class="itemquantity"><label for="qty">Qty:{{ orderitem.quantity }}</label>
+                    <td class="item-total">$ {{ orderitem.item_total }}</td>
+                </tr>
+                {% endfor %}   
+            </table>
+        <table class="inyourcart">
+            <th class='title-incart'>ORDER SUMMARY</th>
+            <tr class="subtotal">
+                <td>
+                    SUBTOTAL
+                </td>
+                <td class="subtotal-value">
+                    $ {{ subtotal }}
+                </td>
+            </tr>
+            <tr class="shipping">
+                <td>
+                    SHIPPING
+                </td>
+                <td class="shipping-value">
+                    $ {{ shippingval }}
+                </td>
+            </tr>
+            <tr class="shipping">
+                <td>
+                    TAX
+                </td>
+                <td class="shipping-value">
+                    $ {{ taxval }}
+                </td>
+            </tr>
+            <tr class="total">
+                <td>
+                    TOTAL
+                </td>
+                <td class="total-value">
+                    $ {{ totalval }}
+                </td>
+            </tr>
+        </table>
+    </body>
+    </html>

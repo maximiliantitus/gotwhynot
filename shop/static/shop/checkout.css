@@ -1,0 +1,438 @@
+body {
+    background: rgb(255,255,255);
+    background: linear-gradient(61deg, rgba(255,255,255,1) 0%, rgba(235,235,235,1) 100%);
+    display:flex;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+
+.checkout{
+    position: absolute;
+    top:15%;
+    float: left;
+    width:60%;
+    left:5%;
+    height: 100%;
+    overflow: scroll;
+}
+.order{
+    border-collapse: collapse;
+    width:100%;
+    position: absolute;
+}
+
+
+.ordercontainer{
+    position: fixed;
+    width:28%;
+    left:67.5%;
+    height: 50%;
+    float: left;
+    top:50%;
+    overflow: scroll;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 1.3em;
+
+}
+.inyourcart{
+    position: fixed;
+    width:25%;
+    left:70%;
+    top:10%;
+    height: 30%;
+    border-collapse: collapse;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 1.5em;
+}
+
+.title-incart{
+    font-size: 1.5em;
+    font-weight: 700;
+    padding-left:27%;
+    width:100%;
+    text-align: center;
+    margin-bottom:5%;
+  }
+
+.titles{
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 2em;
+}
+
+.total{
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    font-weight: 800;
+}
+
+.subtotal-value{
+    text-align: right;
+}
+.shipping-value{
+    text-align: right;
+}
+.tax-value{
+    text-align: right;
+}
+.total-value{
+    text-align: right;
+}
+
+
+
+.cart {
+    position:fixed;
+    width:2.5em;
+    right:3%;
+    top:18px;
+    z-index: 101;
+    opacity: .8;
+    pointer-events: all;
+}
+
+.cart:hover {
+    opacity: 1;
+}
+
+.quantity {
+    position:fixed;
+    opacity: .8;
+    right:.5%;    
+    top:20px;
+    z-index: 103;
+    color:#454545;
+    font-size: .5em;
+    font-weight: 800;
+    text-align: center;
+    padding-top:.9em;
+    padding-bottom:.9em;
+    padding-left:1.1em;
+    padding-right:1.1em;
+    z-index: 101;
+    pointer-events: none;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+
+
+.purchase{
+    position: fixed;
+    left:71.25%;
+    top:45%;
+    width:23%;
+    border-radius: 20px;
+    border:2px solid #454545;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right:10px;
+    padding-left: 10px;
+    outline: none;
+    text-align: center;
+    font-size: 1.1rem;
+    background: white;
+    cursor: pointer;
+    color:#454545;
+    opacity: .8;
+    text-decoration: none;
+    font-family: sans-serif;
+}
+.purchase:hover{
+    opacity: 1;
+    background:#454545;
+    color:white;
+    transition:background 300ms;
+    animation: grow 500ms forwards;
+}
+.row{
+    margin:2%;
+}
+
+
+input{
+    width:48%;
+    padding-top:1.1%;
+    padding-bottom:1.1%;
+    padding-left:1%;
+    font-size: 1.1em;
+    border-radius: 3px;
+    border:1px solid lightgray;
+}
+
+.order td{
+    padding-top:3%;
+    padding-bottom:1%;
+    padding-left:20px;
+    text-align: left;
+}
+.shipping-address{
+    top:10%;
+    position: absolute;
+    width:100%;
+}
+.billing-address{
+    top:73%;
+    position: absolute;
+    width:100%;
+    padding-bottom: 300px;
+}
+
+
+.billing-address.active{
+    display:none;
+}
+
+#shipadr1{
+    width:98%;
+}
+#shipadr2{
+    width:98%;
+}
+#billadr1{
+    width:98%;
+}
+#billadr2{
+    width:98%;
+}
+
+#billzip{
+    width:29%;
+    float:left;
+    margin-right: 1%;
+    z-index: 1000;
+}
+#shipzip{
+    width:29%;
+    float:left;
+    margin-right: 1%;
+    z-index: 1000;
+
+}
+#billcity{
+    width:36%;
+    float:left;
+    z-index: 1000;
+}
+#shipcity{
+    width:36%;
+    float:left;
+    z-index: 1000;
+}
+.title{
+    width:35%;
+}
+
+
+  
+.item-image{
+    position: relative;
+    height: 7vh;
+    border-radius: 10%;
+    margin-left: 15%;
+
+}
+
+.item-total{
+    right:0%;
+    text-align: right;
+    width:50%;
+}
+
+/**
+ * The CSS shown here will not be introduced in the Quickstart guide, but shows
+ * how you can use CSS to style your Element's container.
+ */
+ .StripeElement {
+    box-sizing: border-box;
+  
+    height: 40px;
+  
+    padding: 10px 10px;
+  
+    border:1px solid #D3D3D3; 
+    border-radius: 2px;
+    background-color: white;
+  
+    box-shadow: 0 1px 3px 0 #e6ebf1;
+    -webkit-transition: box-shadow 150ms ease;
+    transition: box-shadow 150ms ease;
+  }
+  
+  .StripeElement--focus {
+    box-shadow: 0 1px 3px 0 #cfd7df;
+  }
+  
+  .StripeElement--invalid {
+    border-color: #fa755a;
+  }
+  
+  .StripeElement--webkit-autofill {
+    background-color: #fefde5 !important;
+  }
+
+.container{
+    top:60%;
+    position: absolute;
+    font-size: 1.2em;
+    padding-left: 40px;
+    padding-top: 40px;
+    font-family: sans-serif;
+}
+
+.container input {
+  position: absolute;
+  left:0;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  margin:3px;
+  top: 33px;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: white;
+  border:2px solid #ccc;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+  animation: grow .3s forwards;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: grey;
+  margin:3px;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
+@keyframes grow {
+	0% {
+		transform: scale(1);
+	}
+
+	100% {
+		transform: scale(1.2);
+	}
+}
+
+select { 
+    -webkit-appearance: none; 
+    -moz-appearance: none; 
+    -ms-appearance: none; 
+    appearance: none; 
+    outline: 0; 
+    background: white; 
+    background-image: none; 
+    border:1px solid #D3D3D3; 
+    width: 29%; 
+    margin: 0; 
+    color: #A9A9A9; 
+    cursor: pointer;
+    padding:1%;
+    padding-top:1.1%;
+    padding-bottom:1%;
+    padding-left:1%;
+    font-size: 1.1em;
+    margin-left:1%;
+    margin-top:.2%;
+    border-radius: 3px;
+} 
+select:hover{
+    border:1px solid #b6b6b6;
+    -webkit-box-shadow: 0px 0px 0px 2px rgba(199,199,199,1);
+    -moz-box-shadow: 0px 0px 0px 2px rgba(199,199,199,1);
+    box-shadow: 0px 0px 0px 2px rgba(199,199,199,1);
+}
+
+.select-wrapper {
+    position: relative;	
+    display: inline;
+}
+.select-wrapper:after {
+    content: '⬍';
+    float: right;
+  	font-size: 1.9em;
+    position: absolute;
+    top:-7px;
+    display: inline-block;
+    font-weight: 800;
+    justify-content: stretch;
+  	right: 2%;
+  	color: #A9A9A9;
+    pointer-events: none;
+    flex-grow:2;
+}
+
+
+
+  
+.navcontainer{
+    position: fixed;
+    height: 80px;
+    width:100%;
+    background:none;
+    z-index: 95;
+    top:0;
+    overflow:hidden;
+
+}
+
+.navcontainer:hover{
+    background: white;
+    transition:background 200ms ease-in-out;
+    opacity: .7;
+}
+
+.shop{
+    position: fixed;
+    line-height: 10%;
+    left:25%;
+    text-decoration: none;
+    background:none;
+    top:40px;
+    color:#454545;
+    font-size:1.5rem;
+    font-weight: 600;
+    z-index: 101;
+}
+.shop:hover{
+    color: black;
+}
+
+.home {
+    position:fixed;
+    height: 70px;
+    left:3%;
+    top:5px;
+    z-index: 101;
+}

@@ -1,0 +1,195 @@
+body {
+    background: rgb(255,255,255);
+    background: linear-gradient(61deg, rgba(255,255,255,1) 0%, rgba(235,235,235,1) 100%);
+    display:flex;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+
+.order{
+    border-collapse: collapse;
+    width:100%;
+    position: absolute;
+}
+
+
+.ordercontainer{
+    position: absolute;
+    width:70%;
+    left:13%;
+    height: 100%;
+    top:88%;
+    overflow: scroll;
+    font-family: sans-serif;
+    font-size: 1.3em;
+}
+.orderin{
+    font-size: 1.6em;
+    margin:0;
+}
+.titles{
+    width:100%;
+    height: 20%;
+    top:80px;
+    position:absolute;
+    text-align: center;
+}
+.title-incart{
+    font-size: 1.1em;
+}
+
+.confirm{
+    font-size: 1.1em;
+}
+
+.inyourcart{
+    position: absolute;
+    width:70%;
+    left:15%;
+    top:40%;
+    height: 50%;
+    border-collapse: collapse;
+    font-family: sans-serif;
+    font-size: 1.7em;
+}
+
+.titles{
+    font-family: sans-serif;
+    font-size: 2em;
+}
+
+.total{
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    font-weight: 800;
+}
+.subtotal-value{
+    text-align: right;
+}
+.shipping-value{
+    text-align: right;
+}
+.tax-value{
+    text-align: right;
+}
+.total-value{
+    text-align: right;
+}
+
+
+
+.cart {
+    position:fixed;
+    width:2.5em;
+    right:3%;
+    top:18px;
+    z-index: 101;
+    opacity: .8;
+    pointer-events: all;
+}
+
+.cart:hover {
+    opacity: 1;
+}
+
+.quantity {
+    position:fixed;
+    opacity: .8;
+    right:.5%;    
+    top:20px;
+    z-index: 103;
+    color:#454545;
+    font-size: .5em;
+    font-weight: 800;
+    text-align: center;
+    padding-top:.9em;
+    padding-bottom:.9em;
+    padding-left:1.1em;
+    padding-right:1.1em;
+    z-index: 101;
+    pointer-events: none;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+
+.row{
+    margin:2%;
+}
+
+
+input{
+    width:48%;
+    padding-top:1.1%;
+    padding-bottom:1.1%;
+    padding-left:1%;
+    font-size: 1.1em;
+    border-radius: 3px;
+    border:1px solid lightgray;
+}
+
+.order td{
+    padding-top:3%;
+    padding-bottom:1%;
+    padding-left:10%;
+    text-align: left;
+}
+
+
+
+.title{
+    width:35%;
+}
+
+
+.item-image{
+    position: relative;
+    height: 20vh;
+    border-radius: 10%;
+
+}
+
+.item-total{
+    right:0%;
+    text-align: right;
+    width:50%;
+}
+
+
+.navcontainer{
+    position: fixed;
+    height: 80px;
+    width:100%;
+    background:none;
+    z-index: 95;
+    top:0;
+    overflow:hidden;
+
+}
+
+.navcontainer:hover{
+    background: white;
+    transition:background 200ms ease-in-out;
+    opacity: .7;
+}
+
+.shop{
+    position: fixed;
+    line-height: 10%;
+    left:25%;
+    text-decoration: none;
+    background:none;
+    top:40px;
+    color:#454545;
+    font-size:1.5rem;
+    font-weight: 600;
+    z-index: 101;
+}
+.shop:hover{
+    color: black;
+}
+
+.home {
+    position:fixed;
+    height: 70px;
+    left:3%;
+    top:5px;
+    z-index: 101;
+}

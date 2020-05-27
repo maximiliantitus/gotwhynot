@@ -1,0 +1,87 @@
+    {% load static %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'shop/style.css' %}">
+        <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz&display=swap" rel="stylesheet">        
+        <title>Document</title>
+    </head>
+    <body>
+        <div class='navcontainer'>
+            <a href='{% url "home" %}'>
+                <img class="home" id="home" src="{% static 'shop/home.png' %}">
+            </a>    
+            <a class='shop' href='{% url "index" %}'>SHOP</a>
+                <a href='{% url "cart" %}'>
+                    <img class="cart" id="cart" src="{% static 'shop/cart.png' %}">
+                </a>
+                <div class=qtycircle>
+                    <a class="quantity">
+                    {{ cartqty }}
+                    </a>
+                </div>
+                <form class='search-bar'>
+                    <input type='text' name='item_name' class="search-bar__input" placeholder="Search" aria-label="search"/>
+                    <button class='search__submit'><img class='search__submit icon' src="{% static 'shop/search.png' %}"></button>
+                </form>
+            </div>
+            <a class='viewall' href='{% url "index" %}'>VIEW ALL</a>
+        <div class='leftnav'>
+            <form method='GET' action='#'>
+                <input type="submit" id='category1' class="category" value="Sort All $$$ to $" name="sort-high"/><br>
+                <input type="submit" id='category2' class="category" value="Sort All $ to $$$" name="sort-low"/><br>
+                <input type="submit" id='category3' class="category" value="Tees" name="Tees"/><br>
+                <input type="submit" id='category4' class="category" value="Accessories" name="Accessories"/><br>
+                <input type="submit" id='category5' class="category" value="Outerwear" name="Outerwear"/><br>
+                <input type="submit" id='category6' class="category" value="Shirts" name="Shirts"/><br>
+                <input type="submit" id='category7' class="category" value="Sweatshirts" name="Sweatshirts"/><br>
+                <input type="submit" id='category8' class="category" value="Jackets" name="Jackets"/><br>
+                <input type="submit" id='category9' class="category" value="Shoes" name="Shoes"/><br>
+                <input type="submit" id='category10' class="category" value="Bottoms" name="Bottoms"/><br>
+                <input type="submit" id='category11' class="category" value="Sale" name="Sale"/><br>
+            </form>
+        </div>
+        <div class="container">
+            {% for product in product_objects %}
+            <div class="product-card">
+                <a href='{% url "index" %}{{ product.id }}'>
+                <img class="image" id="{{ product.image_1 }}" src="{% static 'shop/' %}{{ product.image_1 }}">
+                </a>
+                <a class="title">
+                    {{ product.title }}
+                </a>
+                {% if product.sale == "On Sale" %}
+                <a class="ogprice"><s>
+                    $ {{ product.price }}
+                </s>$ {{ product.discount_price }}</a>
+                    {% else %}
+                <a class="price">
+                    $ {{ product.price }}
+                </a>
+                    {% endif %}
+            </div>
+            {% endfor %}   
+        </div>
+        <div class="order">
+            <table class="order2">
+                {% for orderitem in cart %}
+                <tr class="order-product">
+                    <td><img src="{% static 'shop/' %}{{ orderitem.image_1 }}" class='item-image' id='item-image'></td>
+                    <td class="title">{{ orderitem.product }}</td>
+                    <td class="size">{{ orderitem.size }}</td>
+                    <td class="itemquantity"><label for="qty">Qty:{{ orderitem.quantity }}</label>
+                    <td class="item_total">$ {{ orderitem.item_total }}</td>
+                </tr>
+                {% endfor %}   
+            </table>
+            <a href='{% url "cart" %}' class="gotocartbutton">VIEW BAG</a><br>
+            <a href='{% url "checkout" %}' class="checkoutbutton">CHECKOUT</a>
+        </div>
+    </body>
+    <script src="{% static 'shop/app.js' %}"></script>
+    </html>
+
+
+

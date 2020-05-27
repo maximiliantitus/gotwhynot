@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'shop/detail.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <div class='navcontainer'>
+        <a href='{% url "home" %}'>
+            <img class="home" id="home" src="{% static 'shop/home.png' %}">
+        </a>
+        <a class='shop' href='{% url "index" %}'>SHOP</a>
+    <a href='{% url "cart" %}'>
+        <img class="cart" id="cart" src="{% static 'shop/cart.png' %}">
+    </a>
+    <div class='qtycircle'>
+    <a class="quantity">
+        {{ cartqty }}
+    </a>
+    </div>
+    </div>
+    <div class=mainimagecontainer>
+    <img class="mainimage" id="image" src="{% static 'shop/' %}{{ product_object.image_1 }}">
+    </div> 
+    <div class="container">
+        <div class="product-card">
+            <img class="image active" id="image1" src="{% static 'shop/' %}{{ product_object.image_1 }}">
+            {% if product_object.image_2 != "blank=True" %}
+            <img class="image" id="image2" src="{% static 'shop/' %}{{ product_object.image_2 }}">
+            {% endif %}
+            {% if product_object.image_3 != "blank=True" %}
+            <img class="image" id="image2" src="{% static 'shop/' %}{{ product_object.image_3 }}">
+            {% endif %}
+            {% if product_object.image_4 != "blank=True" %}
+            <img class="image" id="image2" src="{% static 'shop/' %}{{ product_object.image_4 }}">
+            {% endif %}
+            {% if product_object.image_5 != "blank=True" %}
+            <img class="image" id="image2" src="{% static 'shop/' %}{{ product_object.image_5 }}">
+            {% endif %}
+        </div>
+    </div>
+    <div class='copy'>
+            <a class="objtitle">
+                {{ product_object.title }}
+            </a>
+            <a class="maindescription">
+                {{ product_object.description }}
+            </a>
+            {% if product_object.sale == "On Sale" %}
+                <a class="price"><s>
+                    ${{ product_object.price }}</s>  {{ product_object.discount_price }}</a>
+                    {% else %}
+                <a class="price">
+                    $ {{ product_object.price }}
+                </a>
+                    {% endif %}
+    
+            <form class="sizeqty" method="GET" action='{% url "add-to-cart" product_object.id %}'>
+                <div class="select-wrapper">
+                <select name="size" class="size-picker" name="size-picker">
+                    <option value="One Size">Select Your Size</option>
+                    {% for size in product_object.size %}
+                    <option class="size" value='{{ size }}'>{{ size }}</option>
+                    {% endfor %}
+                </select>
+                </div>
+                <label class='qtylabel' for="qty">QTY:</label>
+                <input type="number" value='1' class='qty' name="qty" min="0" max="100">
+                <input type='submit' class='add-to-cart' value='ADD TO BAG'>
+            </form>
+    </div>
+    <div class="order">
+        <table class="order2">
+            {% for orderitem in cart %}
+            <tr class="order-product">
+                <td><img src="{% static 'shop/' %}{{ orderitem.image_1 }}" class='item-image' id='item-image'></td>
+                <td class="title">{{ orderitem.product }}</td>
+                <td class="size">{{ orderitem.size }}</td>
+                <td class="itemquantity"><label for="qty">Qty:{{ orderitem.quantity }}</label>
+                <td class="item-total">${{ orderitem.item_total }}</td>
+            </tr>
+            {% endfor %}   
+        </table>
+        <a href='{% url "cart" %}' class="gotocartbutton">VIEW BAG</a><br>
+        <a href='{% url "checkout" %}' class="checkoutbutton">CHECKOUT</a>
+    </div>
+</body>
+<script src="{% static 'shop/detail.js' %}"></script>
+</html>

@@ -1,0 +1,256 @@
+{% load static %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <script src="https://js.stripe.com/v3/"></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'shop/checkout.css' %}">
+        <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz&display=swap" rel="stylesheet">
+        <title>Document</title>
+    </head>
+    <body>
+        <div class='navcontainer'>
+            <a href='{% url "home" %}'>
+                <img class="home" id="home" src="{% static 'shop/home.png' %}">
+            </a>
+            <a class='shop' href='{% url "index" %}'>SHOP</a>
+        <a href='{% url "cart" %}'>
+            <img class="cart" id="cart" src="{% static 'shop/cart.png' %}">
+        </a>
+        <div class='qtycircle'>
+        <a class="quantity">
+            {{ cartqty }}
+        </a>
+        </div>
+        </div>
+        <div class='checkout'>
+            <form name='form1' action='charge' method="POST" id="payment-form">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div id="card-element">
+                      <!-- A Stripe Element will be inserted here. -->
+                    </div>
+                
+                    <!-- Used to display form errors. -->
+                    <div id="card-errors" role="alert"></div>
+                  </div>
+              
+                  <button class="purchase">PURCHASE</button>
+                  <div class='shipping-address'>
+                    <a class='titles'>SHIPPING</a>
+                        <div class="row">
+                            <input type="text" id='shipfirstname' name="shipfirstname" placeholder="First Name">
+                            <input type="text" id='shiplastname' name="shiplastname" placeholder="Last Name">
+                        </div>
+                        <div class="row">
+                            <input type="text" id="shipemail" name="shipemail" autocomplete="email" placeholder="Email">
+                        </div>
+                        <div class="row">
+                            <input type="text" id="shipadr1" name="shipaddress1" placeholder="Address 1">
+                        </div>
+                        <div class="row">
+                            <input type="text" id="shipadr2" name="shipaddress2" placeholder="Address 2">
+                        </div>
+                        <div class="row">
+                            <input type="text" id="shipzip" onkeypress="return onlyNumberKey(event)" maxlength="5" name="shipzip" placeholder="Zip Code">
+                            <input type="text" id="shipcity" name="shipcity" placeholder="City">
+                            <div class="select-wrapper">
+                                <select class='shipstate' id="shipstate" name="shipstate">
+                                    <option class="shipstate" id="shipstate" value="">State</option>
+                                    <option value="AL">AL</option>
+                                    <option value="AK">AK</option>
+                                    <option value="AR">AR</option>	
+                                    <option value="AZ">AZ</option>
+                                    <option value="CA">CA</option>
+                                    <option value="CO">CO</option>
+                                    <option value="CT">CT</option>
+                                    <option value="DC">DC</option>
+                                    <option value="DE">DE</option>
+                                    <option value="FL">FL</option>
+                                    <option value="GA">GA</option>
+                                    <option value="HI">HI</option>
+                                    <option value="IA">IA</option>	
+                                    <option value="ID">ID</option>
+                                    <option value="IL">IL</option>
+                                    <option value="IN">IN</option>
+                                    <option value="KS">KS</option>
+                                    <option value="KY">KY</option>
+                                    <option value="LA">LA</option>
+                                    <option value="MA">MA</option>
+                                    <option value="MD">MD</option>
+                                    <option value="ME">ME</option>
+                                    <option value="MI">MI</option>
+                                    <option value="MN">MN</option>
+                                    <option value="MO">MO</option>	
+                                    <option value="MS">MS</option>
+                                    <option value="MT">MT</option>
+                                    <option value="NC">NC</option>	
+                                    <option value="NE">NE</option>
+                                    <option value="NH">NH</option>
+                                    <option value="NJ">NJ</option>
+                                    <option value="NM">NM</option>			
+                                    <option value="NV">NV</option>
+                                    <option value="NY">NY</option>
+                                    <option value="ND">ND</option>
+                                    <option value="OH">OH</option>
+                                    <option value="OK">OK</option>
+                                    <option value="OR">OR</option>
+                                    <option value="PA">PA</option>
+                                    <option value="RI">RI</option>
+                                    <option value="SC">SC</option>
+                                    <option value="SD">SD</option>
+                                    <option value="TN">TN</option>
+                                    <option value="TX">TX</option>
+                                    <option value="UT">UT</option>
+                                    <option value="VT">VT</option>
+                                    <option value="VA">VA</option>
+                                    <option value="WA">WA</option>
+                                    <option value="WI">WI</option>	
+                                    <option value="WV">WV</option>
+                                    <option value="WY">WY</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <input type="text" id="shipphone" onkeypress="return onlyNumberKey(event)" maxlength="16" name="phone" placeholder="Phone Number">
+                        </div>
+                    </div>
+                    <label class='container'> SHIPPING MATCHES BILLING
+                        <input type="checkbox" class='sameadr' id='sameadr' checked="checked" name="sameadr">
+                        <span class="checkmark"></span>
+                    </label>
+                <div class='billing-address'>
+                
+                    <a class='titles'>BILLING</a>
+                    <div class="row">
+                        <input type="text" id='billfirstname' name="billfirstname" placeholder="First Name">
+                        <input type="text" id='billlastname' name="billlastname" placeholder="Last Name">
+                    </div>
+                    <div class="row">
+                        <input type="text" id="billemail" name="billemail" autocomplete="email" placeholder="Email">
+                    </div>
+                    <div class="row">
+                        <input type="text" id="billadr1" name="billaddress1" placeholder="Address 1">
+                    </div>
+                    <div class="row">
+                        <input type="text" id="billadr2" name="billaddress2" placeholder="Address 2">
+                    </div>
+                    <div class="row">
+                        <input type="text" id="billzip" maxlength="5" onkeypress="return onlyNumberKey(event)" name="billzip" placeholder="Zip Code">
+                        <input type="text" id="billcity" name="billcity" placeholder="City">
+                        <div class="select-wrapper">
+                        <select id="billstate">
+                            <option class="billstate" id="billstate" name="billstate">State</option>
+                            <option value="AL">AL</option>
+                            <option value="AK">AK</option>
+                            <option value="AR">AR</option>	
+                            <option value="AZ">AZ</option>
+                            <option value="CA">CA</option>
+                            <option value="CO">CO</option>
+                            <option value="CT">CT</option>
+                            <option value="DC">DC</option>
+                            <option value="DE">DE</option>
+                            <option value="FL">FL</option>
+                            <option value="GA">GA</option>
+                            <option value="HI">HI</option>
+                            <option value="IA">IA</option>	
+                            <option value="ID">ID</option>
+                            <option value="IL">IL</option>
+                            <option value="IN">IN</option>
+                            <option value="KS">KS</option>
+                            <option value="KY">KY</option>
+                            <option value="LA">LA</option>
+                            <option value="MA">MA</option>
+                            <option value="MD">MD</option>
+                            <option value="ME">ME</option>
+                            <option value="MI">MI</option>
+                            <option value="MN">MN</option>
+                            <option value="MO">MO</option>	
+                            <option value="MS">MS</option>
+                            <option value="MT">MT</option>
+                            <option value="NC">NC</option>	
+                            <option value="NE">NE</option>
+                            <option value="NH">NH</option>
+                            <option value="NJ">NJ</option>
+                            <option value="NM">NM</option>			
+                            <option value="NV">NV</option>
+                            <option value="NY">NY</option>
+                            <option value="ND">ND</option>
+                            <option value="OH">OH</option>
+                            <option value="OK">OK</option>
+                            <option value="OR">OR</option>
+                            <option value="PA">PA</option>
+                            <option value="RI">RI</option>
+                            <option value="SC">SC</option>
+                            <option value="SD">SD</option>
+                            <option value="TN">TN</option>
+                            <option value="TX">TX</option>
+                            <option value="UT">UT</option>
+                            <option value="VT">VT</option>
+                            <option value="VA">VA</option>
+                            <option value="WA">WA</option>
+                            <option value="WI">WI</option>	
+                            <option value="WV">WV</option>
+                            <option value="WY">WY</option>
+                        </select>
+                    </div>
+                    </div>
+                    <div class="row">
+                        <input type="text" id="billphone" maxlength="16"  name="phone" placeholder="Phone Number">
+                    </div>
+            </div>
+              </form>
+        </div>
+        <table class="inyourcart">
+            <th class='title-incart'>IN YOUR BAG</th>
+            <tr class="subtotal">
+                <td>
+                    SUBTOTAL
+                </td>
+                <td class="subtotal-value">
+                    ${{ subtotal }}
+                </td>
+            </tr>
+            <tr class="shipping">
+                <td>
+                    SHIPPING
+                </td>
+                <td class="shipping-value">
+                    ${{ shippingval }}
+                </td>
+            </tr>
+            <tr class="shipping">
+                <td>
+                    ESTIMATED TAX
+                </td>
+                <td class="shipping-value">
+                    ${{ taxval }}
+                </td>
+            </tr>
+            <tr class="total">
+                <td>
+                    TOTAL
+                </td>
+                <td class="total-value">
+                    ${{ totalval }}
+                </td>
+            </tr>
+        </table>
+        <div class='ordercontainer'>
+            <table class="order">
+                {% for orderitem in cart %}
+                <tr class="product-card">
+                    <td><img src="{% static 'shop/' %}{{ orderitem.image_1 }}" class='item-image' id='item-image'></td>
+                    <td class="title">{{ orderitem.product }}</td>
+                    <td class="size">{{ orderitem.size }}</td>
+                    <td class="itemquantity"><label for="qty">Qty:{{ orderitem.quantity }}</label>
+                    <td class="item-total">${{ orderitem.item_total }}</td>
+                </tr>
+                {% endfor %}   
+            </table>
+        </div>
+    </body>
+    <script src="{% static 'shop/checkout.js' %}"></script>
+    </html>
+
