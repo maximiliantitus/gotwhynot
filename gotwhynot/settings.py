@@ -127,5 +127,5 @@ STRIPE_SECRET_KEY = 'sk_test_JhiU40o7deYVEj7OVLbNebmV00XWKZ3xXl'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'maximilian.titus@gmail.com'
-EMAIL_HOST_PASSWORD = 'LarryJohnson4'
+EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
